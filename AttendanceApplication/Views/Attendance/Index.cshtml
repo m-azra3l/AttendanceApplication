@@ -1,0 +1,106 @@
+﻿@model IEnumerable<AttendanceApplication.Models.Attendance>
+@using Newtonsoft.Json;
+@using AttendanceApplication.Models;
+@using System;
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Index";
+    Employee userinfo = JsonConvert.DeserializeObject<Employee>(User.Identity.Name);
+}
+
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComingTime)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LunchStart)
+        </th>
+
+       
+        @{   if (userinfo != null)
+            {
+
+
+                if (userinfo.UserRoles == "Admin")
+                {
+                    <th></th>}
+
+
+            }
+        }
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfDay)
+            </td>
+            <td>
+                @item.ComingTime
+
+            </td>
+
+            <td>
+                @item.LeaveTime
+
+            </td>
+            <td>
+                @item.LunchStart
+
+            </td>
+
+            
+            @{   if (userinfo != null)
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+
+
+                    if (userinfo.UserRoles == "Admin")
+                    {
+                        < td >
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </ td >
+                    }
+
+
+                }
+            }
+
+        </tr>
+                }
+</table>
+
+@helper DisplayTime(string time)
+{
+
+
+
+DateTime dt = Convert.ToDateTime(time);
+
+
+
+
+
+    <span>
+        @dt.TimeOfDay.ToString()
+    </span>
+
+
+}

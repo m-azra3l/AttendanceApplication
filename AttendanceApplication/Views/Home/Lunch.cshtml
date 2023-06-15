@@ -1,0 +1,36 @@
+﻿@using AttendanceApplication.Models
+@using System;
+@using System.Globalization;
+
+@model LunchViewModel
+@{
+    ViewBag.Title = "Lunch";
+}
+
+<div class="container">
+    <h1>Lunch Break</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (Model.startlunch == true)
+    {
+    <div class="form-group">
+        <div class="well well-lg">
+            You have had your lunch today!
+            @Html.ActionLink("Attendance", "Index", "Home")
+
+        </div>
+    </div>
+    }
+    else
+    {
+    <p class="lead">Take lunch break?</p>
+    <div class="form-group">
+        <input type="submit" value="Yes" class="btn btn-success btn-lg" />
+    </div>
+    }
+
+}
+  
+</div>

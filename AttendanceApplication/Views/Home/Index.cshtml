@@ -1,0 +1,43 @@
+﻿@using AttendanceApplication.Models
+@using System;
+@using System.Globalization;
+
+@model AttendanceViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <h1>Attendance</h1>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+         if (Model.isLeave == true)
+        {
+            <div class="form-group">
+                <div class="well well-lg">
+                    Thanks for coming today!
+                </div>
+            </div>}
+        else
+        {
+            if (Model.iscoming == true)
+            {
+                <p class="lead">Clock out! </p>
+                    <div class="form-group">
+                        <input type="submit" value="Clock Out" class="btn btn-danger btn-lg" />
+                        @Html.ActionLink("Lunch", "Lunch", "Home")
+                    </div>
+                   
+            }
+            else
+            {
+                <p class="lead">Clock in </p>
+                    <div class="form-group">
+                        <input type="submit" value="Clock In" class="btn btn-success btn-lg" />
+                    </div>}
+        }
+    }
+</div>
