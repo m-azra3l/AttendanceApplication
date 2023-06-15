@@ -4,7 +4,7 @@ This is an AspNet C# MVC example application to show employee attendance and lun
 
 Application was created on Visual Studio.
 
-DotNet 4.8 is required as well as MicroSoft SQL Server 2014.
+.Net Framework 4.8 is required as well as MicroSoft SQL Server 2014.
 
 A test admin and employee was created to show difference in authorization.
 
